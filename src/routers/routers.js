@@ -1,6 +1,3 @@
-//import { values, autorun } from "mobx";
-//import { store } from "../Models/RootModel";
-
 export const paths = {
   home: "/",
   favorities: "/favorities",
@@ -23,23 +20,3 @@ export const routers = {
     path: paths.groupAdd
   }
 };
-
-/*autorun(() => {
-  values(store.groups.list).forEach(group => {
-    let count = 0;
-
-    routers["groupById"].forEach(route => {
-      if (group.name === route.name) {
-        count++;
-      }
-    });
-
-    if (!Boolean(count)) {
-      routers["groupById"].push({
-        name: group.name,
-        path: paths.groupById.replace(":id", group.id)
-      });
-    }
-  });
-  //console.log(routers);
-});*/

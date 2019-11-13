@@ -25,14 +25,16 @@ const TodoGroup = () => {
     e.target.textTodo.value = "";
   };
 
+  const todos = store.todos.listTodoByGroupId(group);
+
   return (
     <div>
       {group ? <h1>{group.name}</h1> : null}
       <hr />
-      {store.todos.listTodoByGroupId(group).length !== 0 ? (
+      {todos.length !== 0 ? (
         <Fragment>
           <HeaderItem />
-          <ListItem items={store.todos.listTodoByGroupId(group)} />
+          <ListItem items={todos} />
         </Fragment>
       ) : (
         <p>There are no todos for group</p>

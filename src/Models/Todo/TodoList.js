@@ -1,4 +1,4 @@
-import { types, destroy } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import uuid from "uuid/v4";
 import { Todo } from "./Todo";
 
@@ -9,9 +9,6 @@ export const TodoList = types
   .actions(self => ({
     add(title, group) {
       self.list.push({ id: uuid(), title, group: group.id });
-    },
-    remove(todo) {
-      destroy(todo);
     }
   }))
   .views(self => ({

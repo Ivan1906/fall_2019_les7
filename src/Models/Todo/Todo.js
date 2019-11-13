@@ -1,4 +1,4 @@
-import { types, getParent } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 
 export const Todo = types
   .model("Todo", {
@@ -9,16 +9,10 @@ export const Todo = types
     favorited: types.optional(types.boolean, false)
   })
   .actions(self => ({
-    editText(text) {
-      self.title = text;
-    },
     changeCompleted() {
       self.completed = !self.completed;
     },
     changeFavorited() {
       self.favorited = !self.favorited;
-    },
-    remove() {
-      getParent(self, 2).remove(self);
     }
   }));

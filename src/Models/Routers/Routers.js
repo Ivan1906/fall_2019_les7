@@ -12,15 +12,4 @@ export const Routers = types
     addRouteGroup(name, path) {
       self.groupById.push({ name, path });
     }
-  }))
-  .views(self => ({
-    get getRouters() {
-      let routers = {
-        home: self.home,
-        favorities: self.favorities,
-        groupById: self.groupById,
-        groupAdd: self.groupAdd
-      };
-      return routers;
-    }
   }));

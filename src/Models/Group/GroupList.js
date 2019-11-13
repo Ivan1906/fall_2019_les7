@@ -1,6 +1,7 @@
 import uuid from "uuid/v4";
-import { types } from "mobx-state-tree";
+import { types, getRoot } from "mobx-state-tree";
 import { Group } from "./Group";
+import { paths } from "../../routers/routers";
 
 export const GroupList = types
   .model("GroupList", {
@@ -8,14 +9,14 @@ export const GroupList = types
   })
   .actions(self => ({
     add(name) {
-      self.list.push({ id: uuid(), name });
+      const group = Group.create({ id: uuid(), name });
+      self.list.push(group);
+      getRoot(self).routers.addRouteGroup(
+        group.name,
+        paths.groupById.replace(":id", group.id)
+      );
     },
     clear() {
       self.list.clear();
-    }
-  }))
-  .views(self => ({
-    get countGroups() {
-      return self.list.length;
     }
   }));
